@@ -52,6 +52,12 @@ jobs:
         id: version
         run: echo "version=1.0.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
 
+      - name: Zugangsdaten prüfen
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: |
+          echo "Token-Länge: ${#DEPLOY_TOKEN}"
+      
       - name: Tests ausführen
         run: python -m pytest -v --junitxml=test-results.xml
       
