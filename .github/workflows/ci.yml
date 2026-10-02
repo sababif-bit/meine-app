@@ -27,6 +27,10 @@ jobs:
       - name: Konfiguration anzeigen
         run: echo "Python ${{ env.PYTHON_VERSION }} in ${{ env.APP_ENV }}"
 
+      - name: Deployment-Ziel anzeigen
+        run: |
+          echo "Deployment-Ziel: ${{ vars.DEPLOY_TARGET }}"
+
       - name: Lauf-Informationen anzeigen
         run: |
           echo "Repository: ${{ github.repository }}"
@@ -57,17 +61,6 @@ jobs:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
           echo "Token-Länge: ${#DEPLOY_TOKEN}"
-
-      - name: Maskierung zeigen
-        env:
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-        run: |
-          echo "Direkt: $DEPLOY_TOKEN"
-
-      - name: Maskierung umgehen
-        env:
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-        run: echo -n "${DEPLOY_TOKEN}" | base64
       
       - name: Tests ausführen
         run: python -m pytest -v --junitxml=test-results.xml
