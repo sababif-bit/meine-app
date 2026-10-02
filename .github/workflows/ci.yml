@@ -57,6 +57,12 @@ jobs:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         run: |
           echo "Token-Länge: ${#DEPLOY_TOKEN}"
+          
+      - name: Maskierung zeigen
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: |
+          echo "Token: $DEPLOY_TOKEN"
       
       - name: Tests ausführen
         run: python -m pytest -v --junitxml=test-results.xml
