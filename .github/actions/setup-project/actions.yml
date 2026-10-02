@@ -1,0 +1,16 @@
+name: Setup Projekt
+
+inputs:
+  python-version:
+    default: "3.12"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Hinweis ausgeben
+      run: echo "Setup abgeschlossen"
+      shell: bash
