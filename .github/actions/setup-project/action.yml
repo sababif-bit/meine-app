@@ -1,4 +1,5 @@
 name: Setup Projekt
+description: Set up the Python environment for the project and print a completion notice.
 
 inputs:
   python-version:
