@@ -84,4 +84,5 @@ jobs:
         run: echo "Deployment für ${{ github.ref_name }}"
 
       - name: Version ausgeben
-        run: echo "Deploying Version: ${{ needs.test.outputs.version }}"
+        run: |
+          echo "Deploying Version: ${{ needs.test.outputs.version }}"
