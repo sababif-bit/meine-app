@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
 
 env:
@@ -91,7 +92,7 @@ jobs:
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
-        
+
       - name: Build-Artifact herunterladen
         uses: actions/download-artifact@v4
         with:
