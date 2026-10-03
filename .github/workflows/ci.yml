@@ -84,6 +84,10 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: production
+    permissions:
+      contents: write
+      actions: read
+
     steps:
       - name: Build-Artifact herunterladen
         uses: actions/download-artifact@v4
@@ -93,6 +97,12 @@ jobs:
 
       - name: Inhalt prüfen
         run: ls -l build/
+
+      - name: Zugangsdaten prüfen
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: |
+          echo "Token-Länge: ${#DEPLOY_TOKEN}"
       
       - name: Deployment-Platzhalter
         run: echo "Deployment für ${{ github.ref_name }}"
@@ -100,3 +110,12 @@ jobs:
       - name: Version ausgeben
         run: |
           echo "Deploying Version: ${{ needs.test.outputs.version }}"
+
+      - name: Release erstellen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v1.0.${{ github.run_number }}" \
+            --title "Version 1.0.${{ github.run_number }}" \
+            --notes "Automatisches Deployment aus GitHub Actions" \
+            build/app.zip
