@@ -8,6 +8,9 @@ env:
   PYTHON_VERSION: "3.12"
   APP_ENV: staging
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
