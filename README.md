@@ -21,3 +21,5 @@ Die Tests werden über eine Matrix mit mehreren Python-Versionen ausgeführt:
 - Python 3.12
 
 Bei einem fehlgeschlagenen Test wird die Pipeline als fehlgeschlagen markiert. Fehler können über die Logs in GitHub Actions analysiert werden.
+
+Pipeline-Test für Pull Request.
